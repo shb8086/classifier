@@ -14,7 +14,7 @@ def plot_distribution(df, column_name, file_name):
   if column_name != "age":
     for i, count in enumerate(df[column_name].value_counts()):
       plt.text(i, count, str(count), ha='center', va='bottom')
-  plt.savefig(f"plots/{file_name}.png")
+  plt.savefig(f"../plots/{file_name}.png")
 
 # Display the distribution col1 based on other col2
 def plot_based_distribution(df, col1, col2):
@@ -24,10 +24,10 @@ def plot_based_distribution(df, col1, col2):
   plt.grid(axis='y')
   plt.xticks(rotation=0)
   plt.ylabel('Frequency')
-  plt.savefig(f"plots/{col1}_{col2}_distribution_chart.png")
+  plt.savefig(f"../plots/{col1}_{col2}_distribution_chart.png")
 
 # Load the dataset
-df = pd.read_csv("dataset.csv")
+df = pd.read_csv("../dataset/orig_dataset.csv")
 
 # Display information of the dataset
 print("Dataset shape:")
@@ -85,7 +85,7 @@ plt.grid(True)
 plt.xlabel("Age")
 plt.ylabel("Na_to_K")
 plt.title("Na_to_K ratio based on Age and Gender")
-plt.savefig("plots/Na_to_K_ratio_based_on_Age_gender.png")
+plt.savefig("../plots/Na_to_K_ratio_based_on_Age_gender.png")
 
 # Dataset Preparation
 
@@ -122,7 +122,7 @@ print("\nFirst 5 rows of the modified dataset:")
 print(df.head(), end="\n\n")
 
 # Save the modified dataset
-df.to_csv("modified_dataset.csv", index=False)
+df.to_csv("../dataset/modified_dataset.csv", index=False)
 print("Modified dataset saved successfully!", end="\n\n")
 
 # Splitting the dataset into features and target variable
@@ -163,6 +163,122 @@ print(X_train.shape, y_train.shape, end="\n\n")
 # Display the distribution of the drug_type (target variable) after SMOTE
 plot_distribution(pd.DataFrame(y_train, columns=["drug_type"]), "drug_type", "drug_type_distribution_chart_after_SMOTE")
 
+# Feature Scaling
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+
+# Save the preprocessed training and test sets
+np.save("../dataset/preprocessed/X_train.npy", X_train)
+np.save("../dataset/preprocessed/y_train.npy", y_train)
+np.save("../dataset/preprocessed/X_test.npy", X_test)
+np.save("../dataset/preprocessed/y_test.npy", y_test)
+print("Preprocessed training and test sets saved successfully!", end="\n\n")
+
+# # Load the preprocessed training and test sets
+# X_train = np.load("../dataset/preprocessed/X_train.npy")
+# y_train = np.load("../dataset/preprocessed/y_train.npy")
+# X_test = np.load("../dataset/preprocessed/X_test.npy")
+# y_test = np.load("../dataset/preprocessed/y_test.npy")
+# print("Preprocessed training and test sets loaded successfully!", end="\n\n")
+
+
+
+
+# # Models
+# # Training the Logistic Regression model on the Training set
+# from sklearn.linear_model import LogisticRegression
+# classifier = LogisticRegression(random_state=0)
+# classifier.fit(X_train, y_train)
+
+# # Predicting the Test set results
+# y_pred = classifier.predict(X_test)
+
+# # Training the K-NN model on the Training set
+# from sklearn.neighbors import KNeighborsClassifier
+# classifier = KNeighborsClassifier(n_neighbors=5, metric="minkowski", p=2)
+# classifier.fit(X_train, y_train)
+
+# # Predicting the Test set results
+# y_pred = classifier.predict(X_test)
+
+# # Training the SVM model on the Training set
+# from sklearn.svm import SVC
+# classifier = SVC(kernel="linear", random_state=0)
+# classifier.fit(X_train, y_train)
+
+# # Predicting the Test set results
+# y_pred = classifier.predict(X_test)
+
+# # Training the Kernel SVM model on the Training set
+# from sklearn.svm import SVC
+# classifier = SVC(kernel="rbf", random_state=0)
+# classifier.fit(X_train, y_train)
+
+# # Predicting the Test set results
+# y_pred = classifier.predict(X_test)
+
+# # Training the Naive Bayes model on the Training set
+# from sklearn.naive_bayes import GaussianNB
+# classifier = GaussianNB()
+# classifier.fit(X_train, y_train)
+
+# # Predicting the Test set results
+# y_pred = classifier.predict(X_test)
+
+# # Training the Decision Tree Classification model on the Training set
+# from sklearn.tree import DecisionTreeClassifier
+# classifier = DecisionTreeClassifier(criterion="entropy", random_state=0)
+# classifier.fit(X_train, y_train)
+
+# # Predicting the Test set results
+# y_pred = classifier.predict(X_test)
+
+# # Training the Random Forest Classification model on the Training set
+# from sklearn.ensemble import RandomForestClassifier
+# classifier = RandomForestClassifier(n_estimators=10, criterion="entropy", random_state=0)
+# classifier.fit(X_train, y_train)
+
+# # Predicting the Test set results
+# y_pred = classifier.predict(X_test)
+
+# # Making the Confusion Matrix
+# from sklearn.metrics import confusion_matrix, accuracy_score
+# cm = confusion_matrix(y_test, y_pred)
+# print("Confusion Matrix:")
+# print(cm, end="\n\n")
+# print(f"Accuracy: {accuracy_score(y_test, y_pred)}", end="\n\n")
+
+# # Applying k-Fold Cross Validation
+# from sklearn.model_selection import cross_val_score
+# accuracies = cross_val_score(estimator=classifier, X=X_train, y=y_train, cv=10)
+# print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
+# print("Standard Deviation: {:.2f} %".format(accuracies.std()*100), end="\n\n")
+
+# # Applying Grid Search to find the best model and the best parameters
+# from sklearn.model_selection import GridSearchCV
+# parameters = [
+#   {"n_estimators": [10, 100, 1000], "criterion": ["gini", "entropy"]}
+# ]
+# grid_search = GridSearchCV(estimator=classifier, param_grid=parameters, scoring="accuracy", cv=10, n_jobs=-1)
+# grid_search.fit(X_train, y_train)
+# best_accuracy = grid_search.best_score_
+# best_parameters = grid_search.best_params_
+# print(f"Best Accuracy: {best_accuracy}", end="\n\n")
+# print(f"Best Parameters: {best_parameters}", end="\n\n")
+
+# # Save the best model
+# import joblib
+# joblib.dump(grid_search, "best_model.pkl")
+# print("Best model saved successfully!", end="\n\n")
+
+# # Load the best model
+# best_model = joblib.load("best_model.pkl")
+# print("Best model loaded successfully!", end="\n\n")
+
+# # Predicting the Test set results using the best model
+# y_pred = best_model.predict(X_test)
 
 
 

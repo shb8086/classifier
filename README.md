@@ -34,4 +34,4 @@ Bins certain features into categories, performs one-hot encoding, splits the dat
 
 ### Model Training
 
-The script includes commented-out code for training various models (Logistic Regression, K-NN, SVM, Kernel SVM, Naive Bayes, Decision Tree, Random Forest) and evaluating their performance. It also includes code for applying k-Fold Cross Validation and Grid Search to find the best model and the best parameters. This is happening in `src/classifier.py` file. The models are stored in `models` directory and models' evaluation are stores in csv file in `output/model_evaluation.csv`.
+The script includes training various models (Logistic Regression, K-NN, SVM, Kernel SVM, Naive Bayes, Decision Tree, Random Forest) and evaluating their performance. It also includes code for applying k-Fold Cross Validation and Grid Search to find the best model and the best parameters. This is happening in `src/classifier.py` file. The models are stored in `models` directory and models' evaluation are stores in csv file in `output/model_evaluation.csv`.

@@ -12,6 +12,9 @@ This Python script is used for the classification of drugs based on certain feat
 1. Ensure that the required Python version and libraries are installed.
 2. Place your dataset in the `dataset/` directory. The script expects the original dataset to be named `orig_dataset.csv`.
 3. Run the script using a Python interpreter.
+```
+python script.py
+```
 
 ## Script Details
 
@@ -32,9 +35,3 @@ Bins certain features into categories, performs one-hot encoding, splits the dat
 ### Model Training
 
 The script includes commented-out code for training various models (Logistic Regression, K-NN, SVM, Kernel SVM, Naive Bayes, Decision Tree, Random Forest) and evaluating their performance. It also includes code for applying k-Fold Cross Validation and Grid Search to find the best model and the best parameters. This is happening in `src/classifier.py` file. The models are stored in `models` directory and models' evaluation are stores in csv file in `output/model_evaluation.csv`.
-
-## Usage
-Just call the script using a Python interpreter.
-```
-python script.py
-```

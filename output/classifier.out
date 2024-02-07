@@ -1,0 +1,11 @@
+Preprocessed training and test sets loaded.
+Logistic_Regression model trained and saved.
+K_NN model trained and saved.
+SVM model trained and saved.
+Kernel_SVM model trained and saved.
+Naive_Bayes model trained and saved.
+Decision_Tree model trained and saved.
+Random_Forest model trained and saved.
+Model evaluation plot saved.
+Model evaluation saved.
+All done.

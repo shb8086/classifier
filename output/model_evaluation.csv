@@ -1,0 +1,8 @@
+Model,Train Accuracy,Test Accuracy,Test Loss,Cross Validation Mean,Cross Validation Variance,Trained Model,Model File Path
+Logistic_Regression,0.6038216560509554,0.43333333333333335,1.344771543185744,0.6014930217461862,0.06917449822331462,LogisticRegression(random_state=0),models/Logistic_Regression_model.pkl
+K_NN,0.8738853503184714,0.7833333333333333,2.955924917746352,0.8128205128205128,0.03368257344633518,KNeighborsClassifier(),models/K_NN_model.pkl
+SVM,0.5503184713375796,0.4583333333333333,1.2328615703310541,0.5273774748458293,0.07876838630348765,"SVC(kernel='linear', probability=True, random_state=0)",models/SVM_model.pkl
+Kernel_SVM,0.3375796178343949,0.36666666666666664,1.4291540066186295,0.32109704641350206,0.04034315632980311,"SVC(probability=True, random_state=0)",models/Kernel_SVM_model.pkl
+Naive_Bayes,0.5821656050955414,0.5333333333333333,6.988893163414088,0.5863518338201882,0.07853464133079238,GaussianNB(),models/Naive_Bayes_model.pkl
+Decision_Tree,0.9337579617834395,0.8416666666666667,2.9010317442803797,0.8880233690360273,0.03820479166671822,"DecisionTreeClassifier(criterion='entropy', random_state=0)",models/Decision_Tree_model.pkl
+Random_Forest,0.932484076433121,0.85,1.2887139015012081,0.8931191171697501,0.03791466001988797,"RandomForestClassifier(criterion='entropy', n_estimators=10, random_state=0)",models/Random_Forest_model.pkl

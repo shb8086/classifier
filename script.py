@@ -41,6 +41,14 @@ def execute_python_script(script_file_path, output_file_path):
 
 if __name__ == "__main__":
 
+  # create folders if they don't exist
+  if not os.path.exists('output/plots'):
+    os.makedirs('output/plots')
+  if not os.path.exists('dataset/preprocessed'):
+    os.makedirs('dataset/preprocessed')
+  if not os.path.exists('models'):
+    os.makedirs('models')
+
   # Check if the preprocessed dataset exists
   if not os.path.exists('dataset/preprocessed/X_train.npy'):
     python_script_path = 'src/preprocessing.py'
